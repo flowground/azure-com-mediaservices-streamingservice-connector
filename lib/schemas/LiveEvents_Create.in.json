@@ -1,0 +1,345 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "liveEventName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$"
+        },
+        "autoStart": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM tracked resource.",
+                    "properties": {
+                        "location": {
+                            "description": "The Azure Region of the resource.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object",
+                            "x-ms-mutability": [
+                                "read",
+                                "create",
+                                "update"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "The Live Event.",
+            "properties": {
+                "properties": {
+                    "description": "The Live Event properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "created": {
+                            "description": "The exact time the Live Event was created.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "crossSiteAccessPolicies": {
+                            "description": "The Live Event access policies.",
+                            "type": "object",
+                            "properties": {
+                                "clientAccessPolicy": {
+                                    "description": "The content of clientaccesspolicy.xml used by Silverlight.",
+                                    "type": "string"
+                                },
+                                "crossDomainPolicy": {
+                                    "description": "The content of crossdomain.xml used by Silverlight.",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": {
+                            "description": "The Live Event description.",
+                            "type": "string"
+                        },
+                        "encoding": {
+                            "description": "The Live Event encoding.",
+                            "type": "object",
+                            "properties": {
+                                "encodingType": {
+                                    "description": "The encoding type for Live Event.  This value is specified at creation time and cannot be updated.",
+                                    "enum": [
+                                        "None",
+                                        "Basic",
+                                        "Standard"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": false,
+                                        "name": "LiveEventEncodingType"
+                                    }
+                                },
+                                "presetName": {
+                                    "description": "The encoding preset name.  This value is specified at creation time and cannot be updated.",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "input": {
+                            "description": "The Live Event input.",
+                            "type": "object",
+                            "properties": {
+                                "accessControl": {
+                                    "description": "The access control for LiveEvent Input.",
+                                    "type": "object",
+                                    "properties": {
+                                        "ip": {
+                                            "description": "The IP access control properties.",
+                                            "type": "object",
+                                            "properties": {
+                                                "allow": {
+                                                    "description": "The IP allow list.",
+                                                    "items": {
+                                                        "description": "The IP address range in the CIDR scheme.",
+                                                        "properties": {
+                                                            "address": {
+                                                                "description": "The IP address.",
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "description": "The friendly name for the IP address range.",
+                                                                "type": "string"
+                                                            },
+                                                            "subnetPrefixLength": {
+                                                                "description": "The subnet mask prefix length (see CIDR notation).",
+                                                                "format": "int32",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "accessToken": {
+                                    "description": "A unique identifier for a stream.  This can be specified at creation time but cannot be updated.  If omitted, the service will generate a unique value.",
+                                    "type": "string"
+                                },
+                                "endpoints": {
+                                    "description": "The input endpoints for the Live Event.",
+                                    "items": {
+                                        "description": "The Live Event endpoint.",
+                                        "properties": {
+                                            "protocol": {
+                                                "description": "The endpoint protocol.",
+                                                "type": "string"
+                                            },
+                                            "url": {
+                                                "description": "The endpoint URL.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "keyFrameIntervalDuration": {
+                                    "description": "ISO 8601 timespan duration of the key frame interval duration.",
+                                    "type": "string"
+                                },
+                                "streamingProtocol": {
+                                    "description": "The streaming protocol for the Live Event.  This is specified at creation time and cannot be updated.",
+                                    "enum": [
+                                        "FragmentedMP4",
+                                        "RTMP"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": false,
+                                        "name": "LiveEventInputProtocol"
+                                    }
+                                }
+                            },
+                            "required": [
+                                "streamingProtocol"
+                            ]
+                        },
+                        "lastModified": {
+                            "description": "The exact time the Live Event was last modified.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "preview": {
+                            "description": "The Live Event preview.",
+                            "type": "object",
+                            "properties": {
+                                "accessControl": {
+                                    "description": "The access control for LiveEvent preview.",
+                                    "type": "object",
+                                    "properties": {
+                                        "ip": {
+                                            "description": "The IP access control properties.",
+                                            "type": "object",
+                                            "properties": {
+                                                "allow": {
+                                                    "description": "The IP allow list.",
+                                                    "items": {
+                                                        "description": "The IP address range in the CIDR scheme.",
+                                                        "properties": {
+                                                            "address": {
+                                                                "description": "The IP address.",
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "description": "The friendly name for the IP address range.",
+                                                                "type": "string"
+                                                            },
+                                                            "subnetPrefixLength": {
+                                                                "description": "The subnet mask prefix length (see CIDR notation).",
+                                                                "format": "int32",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "alternativeMediaId": {
+                                    "description": "An Alternative Media Identifier associated with the StreamingLocator created for the preview.  This value is specified at creation time and cannot be updated.  The identifier can be used in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.",
+                                    "type": "string"
+                                },
+                                "endpoints": {
+                                    "description": "The endpoints for preview.",
+                                    "items": {
+                                        "description": "The Live Event endpoint.",
+                                        "properties": {
+                                            "protocol": {
+                                                "description": "The endpoint protocol.",
+                                                "type": "string"
+                                            },
+                                            "url": {
+                                                "description": "The endpoint URL.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "previewLocator": {
+                                    "description": "The identifier of the preview locator in Guid format.  Specifying this at creation time allows the caller to know the preview locator url before the event is created.  If omitted, the service will generate a random identifier.  This value cannot be updated once the live event is created.",
+                                    "type": "string"
+                                },
+                                "streamingPolicyName": {
+                                    "description": "The name of streaming policy used for the LiveEvent preview.  This value is specified at creation time and cannot be updated.",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "provisioningState": {
+                            "description": "The provisioning state of the Live Event.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "resourceState": {
+                            "description": "The resource state of the Live Event.",
+                            "enum": [
+                                "Stopped",
+                                "Starting",
+                                "Running",
+                                "Stopping",
+                                "Deleting"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "LiveEventResourceState"
+                            }
+                        },
+                        "streamOptions": {
+                            "description": "The options to use for the LiveEvent.  This value is specified at creation time and cannot be updated.",
+                            "items": {
+                                "enum": [
+                                    "Default",
+                                    "LowLatency"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": false,
+                                    "name": "StreamOptionsFlag"
+                                }
+                            },
+                            "type": "array"
+                        },
+                        "vanityUrl": {
+                            "description": "Specifies whether to use a vanity url with the Live Event.  This value is specified at creation time and cannot be updated.",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "input"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

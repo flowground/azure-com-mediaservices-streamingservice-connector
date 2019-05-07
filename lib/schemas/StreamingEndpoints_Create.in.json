@@ -1,0 +1,260 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "streamingEndpointName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 24,
+            "pattern": "^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$"
+        },
+        "autoStart": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM tracked resource.",
+                    "properties": {
+                        "location": {
+                            "description": "The Azure Region of the resource.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object",
+                            "x-ms-mutability": [
+                                "read",
+                                "create",
+                                "update"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "The StreamingEndpoint.",
+            "properties": {
+                "properties": {
+                    "description": "The StreamingEndpoint properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "accessControl": {
+                            "description": "The access control definition of the StreamingEndpoint.",
+                            "type": "object",
+                            "properties": {
+                                "akamai": {
+                                    "description": "The access control of Akamai",
+                                    "type": "object",
+                                    "properties": {
+                                        "akamaiSignatureHeaderAuthenticationKeyList": {
+                                            "description": "authentication key list",
+                                            "items": {
+                                                "description": "Akamai Signature Header authentication key.",
+                                                "properties": {
+                                                    "base64Key": {
+                                                        "description": "authentication key",
+                                                        "type": "string"
+                                                    },
+                                                    "expiration": {
+                                                        "description": "The expiration time of the authentication key.",
+                                                        "format": "date-time",
+                                                        "type": "string"
+                                                    },
+                                                    "identifier": {
+                                                        "description": "identifier of the key",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    }
+                                },
+                                "ip": {
+                                    "description": "The IP access control of the StreamingEndpoint.",
+                                    "type": "object",
+                                    "properties": {
+                                        "allow": {
+                                            "description": "The IP allow list.",
+                                            "items": {
+                                                "description": "The IP address range in the CIDR scheme.",
+                                                "properties": {
+                                                    "address": {
+                                                        "description": "The IP address.",
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "description": "The friendly name for the IP address range.",
+                                                        "type": "string"
+                                                    },
+                                                    "subnetPrefixLength": {
+                                                        "description": "The subnet mask prefix length (see CIDR notation).",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "availabilitySetName": {
+                            "description": "The name of the AvailabilitySet used with this StreamingEndpoint for high availability streaming.  This value can only be set at creation time.",
+                            "type": "string"
+                        },
+                        "cdnEnabled": {
+                            "description": "The CDN enabled flag.",
+                            "type": "boolean"
+                        },
+                        "cdnProfile": {
+                            "description": "The CDN profile name.",
+                            "type": "string"
+                        },
+                        "cdnProvider": {
+                            "description": "The CDN provider name.",
+                            "type": "string"
+                        },
+                        "created": {
+                            "description": "The exact time the StreamingEndpoint was created.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "crossSiteAccessPolicies": {
+                            "description": "The StreamingEndpoint access policies.",
+                            "type": "object",
+                            "properties": {
+                                "clientAccessPolicy": {
+                                    "description": "The content of clientaccesspolicy.xml used by Silverlight.",
+                                    "type": "string"
+                                },
+                                "crossDomainPolicy": {
+                                    "description": "The content of crossdomain.xml used by Silverlight.",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "customHostNames": {
+                            "description": "The custom host names of the StreamingEndpoint",
+                            "items": {
+                                "description": "custom host name",
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "description": {
+                            "description": "The StreamingEndpoint description.",
+                            "type": "string"
+                        },
+                        "freeTrialEndTime": {
+                            "description": "The free trial expiration time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "hostName": {
+                            "description": "The StreamingEndpoint host name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "lastModified": {
+                            "description": "The exact time the StreamingEndpoint was last modified.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "maxCacheAge": {
+                            "description": "Max cache age",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "provisioningState": {
+                            "description": "The provisioning state of the StreamingEndpoint.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "resourceState": {
+                            "description": "The resource state of the StreamingEndpoint.",
+                            "enum": [
+                                "Stopped",
+                                "Starting",
+                                "Running",
+                                "Stopping",
+                                "Deleting",
+                                "Scaling"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "StreamingEndpointResourceState"
+                            }
+                        },
+                        "scaleUnits": {
+                            "description": "The number of scale units.  Use the Scale operation to adjust this value.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "scaleUnits"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

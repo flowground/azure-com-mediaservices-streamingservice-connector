@@ -1,0 +1,390 @@
+{
+    "title": "Azure Media Services",
+    "description": "Streaming resource management client for Azure Media Services",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/mediaservices-streamingservice/2018-07-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "LiveEvents_List": {
+            "main": "./lib/actions/LiveEvents_List.js",
+            "title": "List Live Events",
+            "description": "Lists the Live Events in the account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Delete": {
+            "main": "./lib/actions/LiveEvents_Delete.js",
+            "title": "Delete Live Event",
+            "description": "Deletes a Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Get": {
+            "main": "./lib/actions/LiveEvents_Get.js",
+            "title": "Get Live Event",
+            "description": "Gets a Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Update": {
+            "main": "./lib/actions/LiveEvents_Update.js",
+            "title": "Updates a existing Live Event.",
+            "description": "Updates a existing Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Create": {
+            "main": "./lib/actions/LiveEvents_Create.js",
+            "title": "Create Live Event",
+            "description": "Creates a Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveOutputs_List": {
+            "main": "./lib/actions/LiveOutputs_List.js",
+            "title": "List Live Outputs",
+            "description": "Lists the Live Outputs in the Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveOutputs_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveOutputs_Delete": {
+            "main": "./lib/actions/LiveOutputs_Delete.js",
+            "title": "Delete Live Output",
+            "description": "Deletes a Live Output.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveOutputs_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveOutputs_Get": {
+            "main": "./lib/actions/LiveOutputs_Get.js",
+            "title": "Get Live Output",
+            "description": "Gets a Live Output.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveOutputs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveOutputs_Create": {
+            "main": "./lib/actions/LiveOutputs_Create.js",
+            "title": "Create Live Output",
+            "description": "Creates a Live Output.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveOutputs_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Reset": {
+            "main": "./lib/actions/LiveEvents_Reset.js",
+            "title": "Reset Live Event",
+            "description": "Resets an existing Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Reset.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Start": {
+            "main": "./lib/actions/LiveEvents_Start.js",
+            "title": "Start Live Event",
+            "description": "Starts an existing Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Start.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LiveEvents_Stop": {
+            "main": "./lib/actions/LiveEvents_Stop.js",
+            "title": "Stop Live Event",
+            "description": "Stops an existing Live Event.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LiveEvents_Stop.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_List": {
+            "main": "./lib/actions/StreamingEndpoints_List.js",
+            "title": "List StreamingEndpoints",
+            "description": "Lists the StreamingEndpoints in the account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Delete": {
+            "main": "./lib/actions/StreamingEndpoints_Delete.js",
+            "title": "Delete StreamingEndpoint",
+            "description": "Deletes a StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Get": {
+            "main": "./lib/actions/StreamingEndpoints_Get.js",
+            "title": "Get StreamingEndpoint",
+            "description": "Gets a StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Update": {
+            "main": "./lib/actions/StreamingEndpoints_Update.js",
+            "title": "Update StreamingEndpoint",
+            "description": "Updates a existing StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Create": {
+            "main": "./lib/actions/StreamingEndpoints_Create.js",
+            "title": "Create StreamingEndpoint",
+            "description": "Creates a StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Scale": {
+            "main": "./lib/actions/StreamingEndpoints_Scale.js",
+            "title": "Scale StreamingEndpoint",
+            "description": "Scales an existing StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Scale.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Start": {
+            "main": "./lib/actions/StreamingEndpoints_Start.js",
+            "title": "Start StreamingEndpoint",
+            "description": "Starts an existing StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Start.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StreamingEndpoints_Stop": {
+            "main": "./lib/actions/StreamingEndpoints_Stop.js",
+            "title": "Stop StreamingEndpoint",
+            "description": "Stops an existing StreamingEndpoint.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StreamingEndpoints_Stop.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

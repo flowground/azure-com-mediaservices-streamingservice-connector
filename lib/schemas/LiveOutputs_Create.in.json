@@ -1,0 +1,144 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "liveEventName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$"
+        },
+        "liveOutputName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "^([a-zA-Z0-9])+(-*[a-zA-Z0-9])*$"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM proxy resource."
+                }
+            ],
+            "description": "The Live Output.",
+            "properties": {
+                "properties": {
+                    "description": "The Live Output properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "archiveWindowLength": {
+                            "description": "ISO 8601 timespan duration of the archive window length. This is duration that customer want to retain the recorded content.",
+                            "format": "duration",
+                            "type": "string"
+                        },
+                        "assetName": {
+                            "description": "The asset name.",
+                            "type": "string"
+                        },
+                        "created": {
+                            "description": "The exact time the Live Output was created.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "The description of the Live Output.",
+                            "type": "string"
+                        },
+                        "hls": {
+                            "description": "The HLS configuration.",
+                            "type": "object",
+                            "properties": {
+                                "fragmentsPerTsSegment": {
+                                    "description": "The amount of fragments per HTTP Live Streaming (HLS) segment.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "lastModified": {
+                            "description": "The exact time the Live Output was last modified.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "manifestName": {
+                            "description": "The manifest file name.  If not provided, the service will generate one automatically.",
+                            "type": "string"
+                        },
+                        "outputSnapTime": {
+                            "description": "The output snapshot time.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "provisioningState": {
+                            "description": "The provisioning state of the Live Output.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "resourceState": {
+                            "description": "The resource state of the Live Output.",
+                            "enum": [
+                                "Creating",
+                                "Running",
+                                "Deleting"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "LiveOutputResourceState"
+                            }
+                        }
+                    },
+                    "required": [
+                        "assetName",
+                        "archiveWindowLength"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
